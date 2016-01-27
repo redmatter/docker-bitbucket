@@ -1,0 +1,35 @@
+bitbucket:
+  build: server
+  environment:
+    BITBUCKET_USER: atlbitbucket
+	BITBUCKET_GROUP: atlbitbucket
+	BITBUCKET_BACKUP_USER: backup
+	BITBUCKET_BACKUP_PASS: letmein
+	BITBUCKET_URL: http://bitbucket
+  ports:
+   - "8081:80"
+  volumes_from:
+   - server-data
+  links:
+   - mysql
+
+mysql:
+  image: mysql
+  volumes_from:
+   - mysql-data
+  environment:
+    MYSQL_DATABASE: bitbucket
+    MYSQL_USER: atlbitbucket
+    MYSQL_PASSWORD: letmein
+  ports:
+   - "3306:3306"
+
+server-data:
+    build: server-data
+
+mysql-data:
+  image: mysql
+  volumes:
+   - ./mysql-data:/var/lib/mysql
+  entrypoint: /bin/true
+
