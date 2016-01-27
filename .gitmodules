@@ -1,0 +1,6 @@
+[submodule "server"]
+	path = server
+	url = https://bitbucket.org/atlassian/docker-atlassian-bitbucket-server.git
+[submodule "server-data"]
+	path = server-data
+	url = https://bitbucket.org/atlassian/docker-atlassian-bitbucket-server-data.git
